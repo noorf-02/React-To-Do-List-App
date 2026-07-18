@@ -3,12 +3,13 @@ const app = express();
 const dotenv = require('dotenv');
 dotenv.config();
 const cors = require('cors');
+const connectDB = require('./DB CONNECTION/dbConnection');
 app.use(cors());
 const port = process.env.PORT;
 
 
 app.use(express.json());
-
+connectDB();
 app.get('/', (req,res)=>{
     res.send(`The Homepage is running on port ${port}`);
 });
