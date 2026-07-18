@@ -5,10 +5,11 @@ dotenv.config();
 const cors = require('cors');
 const connectDB = require('./DB CONNECTION/dbConnection');
 app.use(cors());
+const router = require("./VIEW/task");
 const port = process.env.PORT;
 
-
 app.use(express.json());
+app.use('/', router);
 connectDB();
 app.get('/', (req,res)=>{
     res.send(`The Homepage is running on port ${port}`);
