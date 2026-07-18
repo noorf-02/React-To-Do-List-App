@@ -6,6 +6,9 @@ const cors = require('cors');
 app.use(cors());
 const port = process.env.PORT;
 
+
+app.use(express.json());
+
 app.get('/', (req,res)=>{
     res.send(`The Homepage is running on port ${port}`);
 });
