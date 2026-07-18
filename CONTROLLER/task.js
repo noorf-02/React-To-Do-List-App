@@ -12,4 +12,22 @@ const getTasks = async (req,res)=>{
     res.send(data);
 }
 
-module.exports = { createTask, getTasks };
+const getTask = async (req,res)=>{
+    const singleTask = await task.findById(req.params.id);
+    res.send(singleTask);
+}
+
+const deleteTask = async (req,res)=>{
+    const deletedTask = await task.findByIdAndDelete(req.params.id);
+    res.send('Task has been deleted');
+    console.log('Task Deleted');
+}
+
+const editTask = async (req,res)=>{
+    const id= req.params.id;
+    const body= req.body;
+    const editedTask = await task.findByIdAndUpdate(id,body, {new:true});
+    res.send(editedTask);
+}
+
+module.exports = { createTask, getTasks, getTask, deleteTask, editTask };
